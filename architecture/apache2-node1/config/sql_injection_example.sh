@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-cp login.php /var/www/
+cp /vagrant_data/login.php /var/www/login.php
 
 #Database creation
 
-mysql -u root -p
+chmod 600 /vagrant_data/mysql_credentials.cnf
+
+mysql --defaults-extra-file=/vagrant_data/mysql_credentials.cnf
 create database sample;
 connect sample;
 create table users(username VARCHAR(100),password VARCHAR(100));

@@ -67,14 +67,14 @@ cp /vagrant_data/mod-security.conf /etc/apache2/mods-enabled/
 
 #Enable rules
 
-mkdir /usr/share/modsecurity-crs/activated_rules
+mkdir -p /usr/share/modsecurity-crs/activated_rules
 
 #SQL Injection rules
-ln -s /usr/share/modsecurity-crs/base_rules/modsecurity_crs_41_sql_injection_attacks.conf /usr/share/modsecurity-crs/activated_rules/
-ln -s /usr/share/modsecurity-crs/base_rules/modsecurity_crs_41_sql_injection_attacks.data /usr/share/modsecurity-crs/activated_rules/
+ln -sf /usr/share/modsecurity-crs/base_rules/modsecurity_crs_41_sql_injection_attacks.conf /usr/share/modsecurity-crs/activated_rules/
+ln -sf /usr/share/modsecurity-crs/base_rules/modsecurity_41_sql_injection_attacks.data /usr/share/modsecurity-crs/activated_rules/
 
 #Install login.php SQL Injection example
-./vagrant_data/sql_injection_example.sh
+sh /vagrant_data/sql_injection_example.sh
 
 service apache2 reload
 
