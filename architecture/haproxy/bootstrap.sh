@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
 apt-get update
+
+apt-get install -y python-software-properties
+add-apt-repository -y ppa:vbernat/haproxy-1.6
+
+apt-get update
+
 apt-get install -y curl
 apt-get install -y vim
 apt-get install -y haproxy
