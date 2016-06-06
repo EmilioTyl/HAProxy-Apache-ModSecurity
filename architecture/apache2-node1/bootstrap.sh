@@ -55,23 +55,10 @@ apt-get install -y  php5 libapache2-mod-php5 php5-mcrypt
 
 cp /vagrant_data/dir.conf /etc/apache2/mods-enabled/dir.conf
 
-cp /vagrant_data/info.php /var/www/info.php
+#Install example webpages
+cp /vagrant_data/webpage_examples/login.php /var/www/
+cp /vagrant_data/webpage_examples/info.php /var/www/
 
-service apache2 restart
-
-#Install Mod Secucity Module
-apt-get install -y libapache2-modsecurity
-
-cp /vagrant_data/modsecurity.conf /etc/modsecurity/
-cp /vagrant_data/mod-security.conf /etc/apache2/mods-enabled/
-
-#Enable rules
-
-mkdir -p /usr/share/modsecurity-crs/activated_rules
-
-#SQL Injection rules
-ln -s /usr/share/modsecurity-crs/base_rules/modsecurity_crs_41_sql_injection_attacks.conf /usr/share/modsecurity-crs/activated_rules/
-ln -s /usr/share/modsecurity-crs/base_rules/modsecurity_41_sql_injection_attacks.data /usr/share/modsecurity-crs/activated_rules/
 
 service apache2 reload
 

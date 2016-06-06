@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
 
-cp login.php /var/www/
+#Install rules
+sh /vagrant_data/rules/sql_injection_rules.sh
+
 
 #Database creation
 
-mysql -u root -p
-create database sample;
-connect sample;
-create table users(username VARCHAR(100),password VARCHAR(100));
-insert into users values('jesin','pwd');
-insert into users values('alice','secret');
-quit;
+#mysql -u root -p
+#create database sample;
+#connect sample;
+#create table users(username VARCHAR(100),password VARCHAR(100));
+#insert into users values('jesin','pwd');
+#insert into users values('alice','secret');
+#quit;
 
 #Attack description
 
