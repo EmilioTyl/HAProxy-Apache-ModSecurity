@@ -15,3 +15,11 @@ cp /vagrant_data/haproxy /etc/default/haproxy
 mv /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.original
 cp /vagrant_data/haproxy.cfg /etc/haproxy/haproxy.cfg
 
+#Configure HAProxy logs
+
+yes | cp -rf /vagrant_data/49-haproxy.conf /etc/rsyslog.d/
+
+restart rsyslog
+
+service haproxy reload
+
