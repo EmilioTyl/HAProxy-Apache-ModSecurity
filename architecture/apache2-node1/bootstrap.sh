@@ -59,6 +59,10 @@ cp /vagrant_data/dir.conf /etc/apache2/mods-enabled/dir.conf
 cp /vagrant_data/webpage_examples/sql_injection_example.php /var/www/
 cp /vagrant_data/webpage_examples/info.php /var/www/
 cp /vagrant_data/webpage_examples/xss_example.html /var/www/
+cp /vagrant_data/webpage_examples/DoS.sh /var/www/
+
+#Add execute privilige
+chmod +x /var/www/DoS.sh
 
 service apache2 reload
 
