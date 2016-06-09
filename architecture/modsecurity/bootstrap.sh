@@ -40,5 +40,9 @@ yes | cp -rf /vagrant_data/rules/aloha.conf /usr/share/modsecurity-crs/activated
 ln -fs /usr/share/modsecurity-crs/base_rules/modsecurity_crs_41_sql_injection_attacks.conf /usr/share/modsecurity-crs/activated_rules/
 ln -fs /usr/share/modsecurity-crs/base_rules/modsecurity_41_sql_injection_attacks.data /usr/share/modsecurity-crs/activated_rules/
 
+#XSS rules
+yes | cp -rf /vagrant_data/rules/xss.conf /usr/share/modsecurity-crs/activated_rules/
+perl /vagrant_data/remove-2.7-actions.pl -t 2.6 -f /usr/share/modsecurity-crs/activated_rules/xss.conf
+
 service apache2 reload
 

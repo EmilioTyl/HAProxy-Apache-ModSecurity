@@ -1,0 +1,69 @@
+<!--
+    To replicate a non-persistent XSS attack search for things like: <script>alert("XSS yo")</script>
+    
+    To replicate a persistent XSS attack post in the forum something like the following:
+        "This is a post with a <a href="http://google.com" onmouseover="alert(document.cookie)"> link </a>"
+
+    Install an extension like https://chrome.google.com/webstore/detail/cors-toggle/omcncfnpmcabckcddookmnajignpffnh/related?hl=en to allow Access Control Origin when testing
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XSS attack</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+</head>
+<body>
+<h2>Buscador</h2>
+<form id="search">
+    <input type="text" name="qry">
+    <button id="btn" type="submit">Buscar</button>
+</form>
+
+<span id="qry-searched"></span>
+
+
+<h2 style="margin-top: 20px">Foro</h2>
+<form id="forum" >
+
+    <textarea type="text" name="post" style="width: 500px"></textarea>
+    <button type="submit">Post</button>
+</form>
+<h3>Posts</h3>
+<div id="posts"></div>
+
+</body>
+</html>
+<script type="application/javascript">
+    $('document').ready(function () {
+        $('#search').submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "http://192.168.33.18:81", //WAF Server
+                data: "qry=" + $('input[name = "qry"]').val(),
+                success: function () {
+                    $('span').html(
+                        '<label for="qry-searched">Parametro buscado: </label>' +
+                        $('input[name = "qry"]').val() + "<br>" +
+                        'Resultados ....'
+                    );
+                }
+            });
+        });
+        $('#forum').submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "http://192.168.33.18:81", //WAF Server
+                data: "qry=" + $('input[name = "post"]').val(),
+                success: function () {
+                    $('#posts').html(
+                        "<span>" + $('textarea[name = "post"]').val() +"</span>"
+                    )
+                }
+            });
+        });
+    });
+</script>

@@ -56,9 +56,9 @@ apt-get install -y  php5 libapache2-mod-php5 php5-mcrypt
 cp /vagrant_data/dir.conf /etc/apache2/mods-enabled/dir.conf
 
 #Install example webpages
-cp /vagrant_data/webpage_examples/login.php /var/www/
+cp /vagrant_data/webpage_examples/sql_injection_example.php /var/www/
 cp /vagrant_data/webpage_examples/info.php /var/www/
-
+cp /vagrant_data/webpage_examples/xss_example.html /var/www/
 
 service apache2 reload
 
