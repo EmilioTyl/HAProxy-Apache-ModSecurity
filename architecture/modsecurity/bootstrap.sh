@@ -44,5 +44,10 @@ ln -fs /usr/share/modsecurity-crs/base_rules/modsecurity_41_sql_injection_attack
 yes | cp -rf /vagrant_data/rules/xss.conf /usr/share/modsecurity-crs/activated_rules/
 perl /vagrant_data/remove-2.7-actions.pl -t 2.6 -f /usr/share/modsecurity-crs/activated_rules/xss.conf
 
+#DoS rules
+yes | cp -rf /vagrant_data/rules/dos.conf /usr/share/modsecurity-crs/activated_rules/
+perl /vagrant_data/remove-2.7-actions.pl -t 2.6 -f /usr/share/modsecurity-crs/activated_rules/dos.conf
+
+
 service apache2 reload
 
