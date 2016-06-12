@@ -15,13 +15,10 @@ apt-get update
 apt-get install -y haproxy
 
 #Enable haproxy to be started when the machine starts
-cp /vagrant_data/haproxy /etc/default/haproxy
-
-#Disable the original configuration of haproxy
-mv /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.original
+yes | cp -rf /vagrant_data/haproxy /etc/default/haproxy
 
 #Enable the new configuration for haproxy
-cp /vagrant_data/haproxy.cfg /etc/haproxy/haproxy.cfg
+yes | cp -rf /vagrant_data/haproxy.cfg /etc/haproxy/
 
 #Configure HAProxy logs
 yes | cp -rf /vagrant_data/49-haproxy.conf /etc/rsyslog.d/
@@ -30,5 +27,5 @@ yes | cp -rf /vagrant_data/49-haproxy.conf /etc/rsyslog.d/
 restart rsyslog
 
 #Restart haproxy
-service haproxy reload
+service haproxy restart
 

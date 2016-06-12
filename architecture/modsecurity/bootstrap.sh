@@ -6,9 +6,10 @@ apt-get update
 apt-get install -y vim
 apt-get install -y curl
 
-#Install Apache Web Server
+# Install Apache Web Server
 apt-get install -y apache2 
 
+# Install RPAF Apache module, used for creating a reverse proxy
 apt-get install libapache2-mod-rpaf
 
 #Configure Apache as a reverse proxy
@@ -30,19 +31,25 @@ apt-get install -y libapache2-modsecurity
 cp /vagrant_data/modsecurity.conf /etc/modsecurity/
 cp /vagrant_data/mod-security.conf /etc/apache2/mods-enabled/
 
-#Enable rules
+# Enable rules
 mkdir -p /usr/share/modsecurity-crs/activated_rules
 
-#WAF Health Check
+# WAF Health Check
 yes | cp -rf /vagrant_data/rules/aloha.conf /usr/share/modsecurity-crs/activated_rules/
 
-#SQL Injection rules
+# SQL Injection rules
 ln -fs /usr/share/modsecurity-crs/base_rules/modsecurity_crs_41_sql_injection_attacks.conf /usr/share/modsecurity-crs/activated_rules/
 ln -fs /usr/share/modsecurity-crs/base_rules/modsecurity_41_sql_injection_attacks.data /usr/share/modsecurity-crs/activated_rules/
 
-#XSS rules
+# XSS rules
 yes | cp -rf /vagrant_data/rules/xss.conf /usr/share/modsecurity-crs/activated_rules/
 perl /vagrant_data/remove-2.7-actions.pl -t 2.6 -f /usr/share/modsecurity-crs/activated_rules/xss.conf
 
-service apache2 reload
+# DOS rules
+yes | cp -rf /vagrant_data/rules/dos.conf /usr/share/modsecurity-crs/activated_rules/
 
+# Copy Error Pages
+mkdir -p /var/www/error
+yes | cp -rf /vagrant_data/error/403.html /var/www/error/
+
+service apache2 reload
