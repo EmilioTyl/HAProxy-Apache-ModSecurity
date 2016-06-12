@@ -36,7 +36,7 @@ int main(int argc, char **argv){
 			printf("%d: Error sending message\n", i);
 		}else{
 			printf("%d: Message receive:\n", i);
-			msgRcv = (char*)calloc(sizeof(char), bufferSize+1);
+			msgRcv = (char*)calloc(bufferSize+1, sizeof(char));
 			int read;
 			while((read=recv(fd, msgRcv, bufferSize, 0))>0){
 				msgRcv[read]=0;
