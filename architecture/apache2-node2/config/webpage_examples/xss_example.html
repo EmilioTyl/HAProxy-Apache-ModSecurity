@@ -41,7 +41,7 @@
             e.preventDefault();
             $.ajax({
                 type: "POST",
-                url: "http://192.168.33.15:80", 
+                url: "http://192.168.33.15:80",
                 data: "qry=" + $('input[name = "qry"]').val(),
                 success: function () {
                     $('span').html(
@@ -56,7 +56,7 @@
             e.preventDefault();
             $.ajax({
                 type: "POST",
-                url: "http://192.168.33.15:80", 
+                url: "http://192.168.33.15:80",
                 data: "qry=" + $('input[name = "post"]').val(),
                 success: function () {
                     $('#posts').html(

@@ -50,6 +50,6 @@ yes | cp -rf /vagrant_data/rules/dos.conf /usr/share/modsecurity-crs/activated_r
 
 # Copy Error Pages
 mkdir -p /var/www/error
-yes | cp -rf /vagrant_data/error/403.html /var/www/error/
+yes | cp -rf /vagrant_data/error_pages/403.html /var/www/error/
 
 service apache2 reload

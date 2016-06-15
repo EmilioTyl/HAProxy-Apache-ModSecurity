@@ -53,7 +53,7 @@ echo "$SECURE_MYSQL"
 
 apt-get install -y  php5 libapache2-mod-php5 php5-mcrypt
 
-cp -rf /vagrant_data/dir.conf /etc/apache2/mods-enabled/dir.conf
+cp /vagrant_data/dir.conf /etc/apache2/mods-enabled/dir.conf
 
 #Install example webpages
 cp -rf /vagrant_data/webpage_examples/sql_injection_example.php /var/www/
